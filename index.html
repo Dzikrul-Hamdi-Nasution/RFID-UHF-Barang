@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Icon -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+  <script src="assets/js/bootstrap.min.js"></script>
+  <!-- METISMENU SCRIPTS -->
+  <script src="assets/js/jquery.metisMenu.js"></script>
+   <!-- MORRIS CHART SCRIPTS -->
+   <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
+  <script src="assets/js/morris/morris.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+  <script src="assets/js/custom.js"></script>
+  <script src="html5-qrcode.min.js"></script>
+
+  
+    <title>Daftar Aset</title>
+  </head>
+  <body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #e3f2fd;">
+     <div class="container">   
+    <a class="navbar-brand" href="#">Laporan Inventaris</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+       
+        <li class="nav-item active">
+          <a class="nav-link js-scroll-trigger" href="admin.html"><i  class="fa fa-dashboard fa-3x"></i>     Tambah Aset<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </nav>
+
+  <div class="container">
+  	<div class="row">
+  		<div class="col-12 col-md-12 mt-5">
+  			<h3><i class="fas fa-shopping-cart mr-2"></i>INVENTARIS</h3>
+  			<hr class="hr-menu">
+  			<table id="tabel-status-alat" class="table table-bordered">
+			  <thead>
+			    <tr>
+            <th scope="col">Nama Barang</th>
+			      <th scope="col">Jumlah </th>
+			     
+
+			    </tr>
+			  </thead>
+			 
+			    <tr>
+			    	
+			    </tr>
+          
+			  </tbody>
+    
+			    	<td></td> 
+            <td></td> 
+            <td></td> 
+			    	
+			</table>
+      
+		   </div>
+		</div>
+	</div>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script src="currency.js"></script>
+
+    <script>
+      var config = {
+        apiKey: "AIzaSyDdALMV0tinjyVRZNv0eT_wjaK26lnw5Fw",
+  authDomain: "rfid-uhf-logger.firebaseapp.com",
+  databaseURL: "https://rfid-uhf-logger-default-rtdb.firebaseio.com",
+  projectId: "rfid-uhf-logger",
+  storageBucket: "rfid-uhf-logger.appspot.com",
+  messagingSenderId: "174286425345",
+  appId: "1:174286425345:web:0339f199c3e636e94d9f00",
+  measurementId: "G-XTL4MP9RD8"
+    };
+    firebase.initializeApp(config);
+
+    firebase.database().ref("mode").update({
+        nilai: "_esoutput",
+     });
+
+
+
+
+
+
+
+
+
+
+    var dbRef = firebase.database();
+var statusAlat = dbRef.ref("ID");
+ 
+// Dapatkan referensi table
+var table = document.getElementById("tabel-status-alat").getElementsByTagName('tbody')[0];;
+ 
+var total_harga=0,nomor=0;
+// Memuat Data
+statusAlat.on("child_added", function(data, prevChildKey) {
+  nomor++
+var newstatusAlat = data.val();
+ 
+var row = table.insertRow(table.rows.length);
+ 
+var cell1 = row.insertCell(0);
+var cell2 = row.insertCell(1);
+
+
+
+cell2.innerHTML = newstatusAlat.jumlah;
+cell1.innerHTML = newstatusAlat.nama;
+
+
+
+
+
+
+});
+
+
+
+</script>
+  </body>
+</html>
